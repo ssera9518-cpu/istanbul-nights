@@ -29,7 +29,7 @@ header{position:absolute;top:0;left:0;width:100%;z-index:50;padding:18px}
 .language-switch button{border:0;background:transparent;color:#aaa;padding:7px 11px;font-size:11px;font-weight:700;cursor:pointer}
 .language-switch button.active{color:#050505;background:var(--gold)}
 .menu-button{width:40px;height:40px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(0,0,0,.35);color:#fff;cursor:pointer;font-size:20px}
-.hero{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;padding:110px 20px 70px;text-align:center;background-image:linear-gradient(to bottom,rgba(0,0,0,.50),rgba(0,0,0,.38) 40%,rgba(0,0,0,.86) 100%),url("https://images.unsplash.com/photo-1786792462225-6006ece8f98b?auto=format&fit=crop&fm=jpg&q=85&w=2400");background-size:cover;background-position:center}
+.hero{min-height:100svh;position:relative;display:flex;align-items:center;justify-content:center;padding:110px 20px 70px;text-align:center;background-image:linear-gradient(to bottom,rgba(0,0,0,.50),rgba(0,0,0,.38) 40%,rgba(0,0,0,.86) 100%),url("https://images.unsplash.com/photo-1767793357520-d6bc51743951?auto=format&fit=crop&q=85&w=2400");background-size:cover;background-position:center}
 .hero-content{position:relative;z-index:2;width:100%;max-width:850px}
 .hero-small{color:var(--gold-light);font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-bottom:18px;font-weight:600}
 .hero h1{font-size:clamp(38px,10vw,78px);line-height:1.12;font-weight:900;letter-spacing:-1px;text-shadow:0 4px 30px rgba(0,0,0,.8);margin-bottom:18px}
@@ -101,6 +101,14 @@ html[dir=ltr] .logo{text-align:left}
 header{padding:25px 35px}.hero{padding-left:40px;padding-right:40px}.hero-buttons{flex-direction:row;max-width:600px}.hero-buttons .btn{flex:1}.experience-grid{grid-template-columns:1fr 1fr}.features-grid{grid-template-columns:repeat(4,1fr)}.profiles-grid{grid-template-columns:repeat(4,1fr)}.profile-photo{height:330px}.night-grid{grid-template-columns:repeat(2,1fr)}.night-card{min-height:260px}
 }
 @media(min-width:1000px){section{padding:110px 30px}.hero{background-position:center 42%}.profile-photo{height:360px}}
+
+.profile-loading{border-style:dashed}
+.profile-card .profile-btn{border:0;cursor:pointer}
+.profile-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.profile-actions a{display:flex;align-items:center;justify-content:center}
+.profile-secondary{background:transparent!important;color:#fff!important;border:1px solid rgba(216,181,106,.55)}
+@media(max-width:420px){.profile-actions{grid-template-columns:1fr}}
+
 </style>
 </head>
 
@@ -184,28 +192,10 @@ header{padding:25px 35px}.hero{padding-left:40px;padding-right:40px}.hero-button
       <p data-i18n="profilesText">تصفح البروفايلات وشاهد الصور والمعلومات قبل التواصل.</p>
     </div>
 
-    <div class="profiles-grid">
-
-      <article class="profile-card">
-        <div class="profile-photo"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=85&w=800" alt="Selin" loading="lazy"></div>
-        <div class="profile-info"><div class="profile-name">Selin</div><div class="profile-age">25</div><div class="profile-text" data-i18n="profileText">إسطنبول • أجواء ليلية</div><a href="#" class="profile-btn" data-i18n="profileButton">تواصل عبر واتساب</a></div>
-      </article>
-
-      <article class="profile-card">
-        <div class="profile-photo"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=85&w=800" alt="Aylin" loading="lazy"></div>
-        <div class="profile-info"><div class="profile-name">Aylin</div><div class="profile-age">27</div><div class="profile-text" data-i18n="profileText">إسطنبول • أجواء ليلية</div><a href="#" class="profile-btn" data-i18n="profileButton">تواصل عبر واتساب</a></div>
-      </article>
-
-      <article class="profile-card">
-        <div class="profile-photo"><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&q=85&w=800" alt="Elif" loading="lazy"></div>
-        <div class="profile-info"><div class="profile-name">Elif</div><div class="profile-age">24</div><div class="profile-text" data-i18n="profileText">إسطنبول • أجواء ليلية</div><a href="#" class="profile-btn" data-i18n="profileButton">تواصل عبر واتساب</a></div>
-      </article>
-
-      <article class="profile-card">
-        <div class="profile-photo"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=85&w=800" alt="Deniz" loading="lazy"></div>
-        <div class="profile-info"><div class="profile-name">Deniz</div><div class="profile-age">28</div><div class="profile-text" data-i18n="profileText">إسطنبول • أجواء ليلية</div><a href="#" class="profile-btn" data-i18n="profileButton">تواصل عبر واتساب</a></div>
-      </article>
-
+    <div class="profiles-grid" id="profilesGrid">
+      <div class="profile-card profile-loading" style="grid-column:1/-1;padding:35px;text-align:center;color:#999">
+        جاري تحميل البروفايلات...
+      </div>
     </div>
   </div>
 </section>
@@ -261,7 +251,7 @@ chooseProfile:"اختر البروفايل المناسب",featuresTitle:"ليل
 feature1Title:"سهر ممتع",feature1Text:"أجواء ليلية مميزة",feature2Title:"بروفايلات",feature2Text:"اختر من البروفايلات المتاحة",
 feature3Title:"رقص",feature3Text:"موسيقى وأجواء حيوية",feature4Title:"أجواء نار",feature4Text:"ليلة مختلفة لا تُنسى",
 profilesKicker:"OUR PROFILES",profilesTitle:"اختر البروفايل المناسب",profilesText:"تصفح البروفايلات وشاهد الصور والمعلومات قبل التواصل.",
-profileText:"إسطنبول • أجواء ليلية",profileButton:"تواصل عبر واتساب",
+profileText:"إسطنبول • أجواء ليلية",viewProfile:"عرض البروفايل",profileButton:"تواصل عبر واتساب",
 nightsTitle:"اختر أجواء ليلتك",nightsText:"إسطنبول في الليل لها طابع مختلف.",
 night1Title:"رقص وأجواء حيوية",night1Text:"موسيقى وأجواء مليئة بالطاقة",night2Title:"سهر ممتع",night2Text:"استمتع بليلة مختلفة",
 night3Title:"أجواء إسطنبول الليلية",night3Text:"المدينة تبدأ قصتها بعد الغروب",night4Title:"ليلة لا تُنسى",night4Text:"اصنع ذكرياتك الخاصة",
@@ -278,7 +268,7 @@ chooseProfile:"Choose A Profile",featuresTitle:"A Night Your Way",featuresText:"
 feature1Title:"Good Times",feature1Text:"A memorable night atmosphere",feature2Title:"Profiles",feature2Text:"Choose from available profiles",
 feature3Title:"Dancing",feature3Text:"Music and vibrant energy",feature4Title:"Hot Atmosphere",feature4Text:"A night to remember",
 profilesKicker:"OUR PROFILES",profilesTitle:"Choose Your Profile",profilesText:"Browse profiles, photos and information before contacting.",
-profileText:"Istanbul • Nightlife",profileButton:"Contact via WhatsApp",
+profileText:"Istanbul • Nightlife",viewProfile:"View Profile",profileButton:"Contact via WhatsApp",
 nightsTitle:"Choose Your Night",nightsText:"Istanbul has a different energy after dark.",
 night1Title:"Dancing & Energy",night1Text:"Music and vibrant atmosphere",night2Title:"Good Times",night2Text:"Enjoy a different night",
 night3Title:"Istanbul Nightlife",night3Text:"The city comes alive after sunset",night4Title:"A Night To Remember",night4Text:"Create your own memories",

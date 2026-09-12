@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>إدارة البروفايلات | Istanbul Nights</title>
+<meta name="robots" content="noindex,nofollow"><style>
+*{box-sizing:border-box}body{margin:0;background:#080808;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:900px;margin:auto;padding:25px}.gold{color:#d8b56a}h1{font-size:30px}.box{background:#121212;border:1px solid rgba(216,181,106,.2);border-radius:20px;padding:20px;margin:15px 0}label{display:block;color:#bbb;font-size:13px;margin:12px 0 6px}input,textarea{width:100%;background:#090909;border:1px solid #333;color:#fff;padding:13px;border-radius:12px;font:inherit}textarea{min-height:110px}.btn{display:block;width:100%;padding:14px;border:0;border-radius:30px;background:#d8b56a;color:#080808;font-weight:900;margin-top:15px}.danger{background:#7d3030;color:#fff}.muted{color:#888;font-size:12px;line-height:1.8}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.item{padding:15px;border:1px solid #2a2a2a;border-radius:15px;margin:10px 0}.item img{width:80px;height:80px;object-fit:cover;border-radius:12px;float:left;margin-right:12px}@media(max-width:600px){.row{grid-template-columns:1fr}}
+</style></head><body><div class="wrap">
+<h1>إدارة <span class="gold">Istanbul Nights</span></h1>
+<div id="auth" class="box"><h2>دخول الإدارة</h2><p class="muted">هذه الصفحة تستخدم Supabase Auth. أنشئ مستخدم الإدارة من Supabase ثم أدخل البريد وكلمة المرور هنا.</p>
+<input id="email" type="email" placeholder="البريد الإلكتروني"><input id="password" type="password" placeholder="كلمة المرور"><button class="btn" onclick="login()">دخول</button><div id="authMsg" class="muted"></div></div>
+<div id="app" style="display:none">
+<div class="box"><h2>إضافة / تعديل بروفايل</h2>
+<div class="row"><div><label>الاسم بالعربي</label><input id="name_ar"></div><div><label>الاسم بالإنجليزي</label><input id="name_en"></div></div>
+<div class="row"><div><label>العمر</label><input id="age" type="number" min="18"></div><div><label>رقم WhatsApp</label><input id="whatsapp" placeholder="مثال: 905xxxxxxxxx"></div></div>
+<label>نبذة بالعربي</label><textarea id="bio_ar"></textarea><label>Bio in English</label><textarea id="bio_en"></textarea>
+<label>رابط الصورة الرئيسية</label><input id="image_url" placeholder="سنربط رفع الصور الحقيقي بـ Supabase Storage في الخطوة التالية">
+<label>روابط صور إضافية، رابط في كل سطر</label><textarea id="gallery"></textarea>
+<label><input id="active" type="checkbox" checked style="width:auto"> منشور على الموقع</label>
+<button class="btn" onclick="saveProfile()">حفظ البروفايل</button><button class="btn danger" onclick="logout()">تسجيل الخروج</button>
+<div id="saveMsg" class="muted"></div></div>
+<div class="box"><h2>البروفايلات</h2><div id="list">جاري التحميل...</div></div>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="",SUPABASE_ANON_KEY=""; let sb=null,currentId=null;
+function init(){if(!SUPABASE_URL||!SUPABASE_ANON_KEY){document.getElementById("authMsg").textContent="أولاً ضع بيانات Supabase العامة في أعلى هذا الملف.";return}sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);}
+async function login(){if(!sb)init();if(!sb)return;let {error}=await sb.auth.signInWithPassword({email:email.value,password:password.value});authMsg.textContent=error?error.message:"تم الدخول";if(!error)showApp();}
+async function showApp(){auth.style.display="none";app.style.display="block";loadList();}
+async function logout(){await sb.auth.signOut();location.reload();}
+function slugify(s){return s.toLowerCase().trim().replace(/\s+/g,"-").replace(/[^a-z0-9\u0600-\u06ff-]/g,"").replace(/-+/g,"-")||("profile-"+Date.now());}
+async function saveProfile(){let payload={name_ar:name_ar.value.trim(),name_en:name_en.value.trim()||name_ar.value.trim(),slug:slugify(name_en.value||name_ar.value),age:age.value?Number(age.value):null,whatsapp:whatsapp.value.trim(),bio_ar:bio_ar.value.trim(),bio_en:bio_en.value.trim(),image_url:image_url.value.trim(),gallery:gallery.value.split(/\n+/).map(x=>x.trim()).filter(Boolean),active:active.checked};if(!payload.name_ar||!payload.image_url){saveMsg.textContent="الاسم بالعربي والصورة الرئيسية مطلوبان.";return}let q=currentId?sb.from("profiles").update(payload).eq("id",currentId):sb.from("profiles").insert(payload);let {error}=await q;saveMsg.textContent=error?error.message:"تم الحفظ بنجاح";if(!error){currentId=null;clearForm();loadList();}}
+function clearForm(){["name_ar","name_en","age","whatsapp","bio_ar","bio_en","image_url","gallery"].forEach(id=>document.getElementById(id).value="");active.checked=true;}
+async function loadList(){let {data,error}=await sb.from("profiles").select("*").order("created_at",{ascending:false});if(error){list.textContent=error.message;return}list.innerHTML=(data||[]).map(p=>`<div class="item"><img src="${p.image_url||""}"><b>${p.name_ar||p.name_en}</b><br>${p.age||""} • ${p.active?"منشور":"مخفي"}<br><button onclick='editProfile(${JSON.stringify(p).replace(/'/g,"&#39;")})'>تعديل</button> <button onclick='deleteProfile("${p.id}")'>حذف</button><div style="clear:both"></div></div>`).join("")||"لا توجد بروفايلات";}
+function editProfile(p){currentId=p.id;name_ar.value=p.name_ar||"";name_en.value=p.name_en||"";age.value=p.age||"";whatsapp.value=p.whatsapp||"";bio_ar.value=p.bio_ar||"";bio_en.value=p.bio_en||"";image_url.value=p.image_url||"";gallery.value=(p.gallery||[]).join("\n");active.checked=!!p.active;scrollTo({top:0,behavior:"smooth"});}
+async function deleteProfile(id){if(!confirm("هل تريد حذف هذا البروفايل؟"))return;let {error}=await sb.from("profiles").delete().eq("id",id);if(error)alert(error.message);else loadList();}
+init();
+</script></body></html>

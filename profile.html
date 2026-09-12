@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بروفايل | ليالي إسطنبول</title>
+<meta name="description" content="شاهد صور ومعلومات البروفايل على ليالي إسطنبول.">
+<meta name="robots" content="index, follow"><meta name="theme-color" content="#080808">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+a{color:inherit;text-decoration:none}.wrap{max-width:1050px;margin:auto;padding:22px}
+.top{display:flex;justify-content:space-between;align-items:center}.logo{font-weight:900;font-size:19px}.gold{color:#d8b56a}
+.lang button{border:1px solid #555;background:#111;color:#aaa;border-radius:20px;padding:7px 11px}.lang .active{background:#d8b56a;color:#050505}
+.hero{margin-top:35px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}.main-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;border:1px solid rgba(216,181,106,.3)}
+h1{font-size:clamp(34px,7vw,60px);margin:0 0 5px}.age{color:#d8b56a;font-size:16px}.bio{color:#aaa;font-size:17px;line-height:1.9;margin:22px 0}.wa{display:flex;justify-content:center;padding:15px 22px;border-radius:40px;background:#d8b56a;color:#080808;font-weight:900}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}
+.back{display:inline-block;margin-top:35px;color:#d8b56a}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<div class="wrap">
+<header class="top"><a class="logo" href="index.html">ليالي إسطنبول <span class="gold">ISTANBUL NIGHTS</span></a>
+<div class="lang"><button id="ar" class="active" onclick="setLang('ar')">AR</button><button id="en" onclick="setLang('en')">EN</button></div></header>
+<main id="profile">جاري تحميل البروفايل...</main>
+<a class="back" href="index.html#profiles">← العودة إلى البروفايلات</a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="",SUPABASE_ANON_KEY="";
+const fallback={selin:{id:"selin",name_ar:"Selin",name_en:"Selin",age:25,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=85&w=1000"},
+aylin:{id:"aylin",name_ar:"Aylin",name_en:"Aylin",age:27,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=85&w=1000"},
+elif:{id:"elif",name_ar:"Elif",name_en:"Elif",age:24,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&q=85&w=1000"},
+deniz:{id:"deniz",name_ar:"Deniz",name_en:"Deniz",age:28,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=85&w=1000"}};
+let lang=localStorage.getItem("istanbulNightsLanguage")==="en"?"en":"ar";
+function setLang(l){lang=l;document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";document.getElementById("ar").classList.toggle("active",l==="ar");document.getElementById("en").classList.toggle("active",l==="en");render(window.__profile);}
+function msg(p){let n=lang==="en"?(p.name_en||p.name_ar):(p.name_ar||p.name_en);return lang==="en"?`Hello, I would like to contact ${n}. I found the profile on Istanbul Nights and would like more information.`:`مرحباً، أرغب في التواصل مع العضوة ${n}. وجدت بروفايلها على موقع ليالي إسطنبول وأرغب في معرفة المزيد.`}
+function render(p){if(!p)return;window.__profile=p;let n=lang==="en"?(p.name_en||p.name_ar):(p.name_ar||p.name_en),b=lang==="en"?(p.bio_en||p.bio_ar):(p.bio_ar||p.bio_en);let phone=(p.whatsapp||"").replace(/\D/g,"");document.getElementById("profile").innerHTML=`<div class="hero"><div><img class="main-img" src="${p.image_url}" alt="${n}"></div><div><h1>${n}</h1><div class="age">${p.age||""}</div><p class="bio">${b||""}</p><a class="wa" href="${phone?`https://wa.me/${phone}?text=${encodeURIComponent(msg(p))}`:"#"}">${lang==="en"?"Contact via WhatsApp":"تواصل عبر واتساب"}</a><div class="gallery">${(p.gallery||[]).map(x=>`<img src="${x}" alt="${n}" loading="lazy">`).join("")}</div></div></div>`}
+async function load(){let slug=new URLSearchParams(location.search).get("slug")||"selin";let p=fallback[slug]||fallback.selin;if(SUPABASE_URL&&SUPABASE_ANON_KEY){let s=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);let {data}=await s.from("profiles").select("*").eq("slug",slug).eq("active",true).single();if(data)p=data;}render(p)}
+load();
+</script></body></html>
