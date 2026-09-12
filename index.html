@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+html.returning-from-profile body{visibility:hidden}*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#070707;color:#fff;line-height:1.7;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
@@ -110,6 +110,11 @@ header{padding:25px 35px}.hero{padding-left:40px;padding-right:40px}.hero-button
 @media(max-width:420px){.profile-actions{grid-template-columns:1fr}}
 
 </style>
+<script>
+if(location.hash==="#profiles"){
+  document.documentElement.classList.add("returning-from-profile");
+}
+</script>
 </head>
 
 <body>
@@ -285,6 +290,7 @@ if(returnToProfiles){
           left:0,
           behavior:"auto"
         });
+        document.documentElement.classList.remove("returning-from-profile");
       }
     });
   });
