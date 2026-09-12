@@ -240,6 +240,42 @@ header{padding:25px 35px}.hero{padding-left:40px;padding-right:40px}.hero-button
 </footer>
 
 <script>
+/* Supabase connection */
+const SUPABASE_URL = "https://edeczxsfhijkdglyrwqk.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+async function loadProfiles(){
+  const grid=document.getElementById("profilesGrid");
+  if(!grid) return;
+  if(SUPABASE_PUBLISHABLE_KEY.includes("PASTE_YOUR")){
+    grid.innerHTML='<div class="profile-card" style="grid-column:1/-1;padding:30px;text-align:center;color:#aaa">سيتم عرض البروفايلات بعد ربط Supabase.</div>';
+    return;
+  }
+  try{
+    const res=await fetch(SUPABASE_URL+"/rest/v1/profiles?select=*&active=eq.true&order=created_at.desc",{
+      headers:{"apikey":SUPABASE_PUBLISHABLE_KEY,"Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY}
+    });
+    if(!res.ok) throw new Error("Supabase request failed");
+    const profiles=await res.json();
+    if(!profiles.length){
+      grid.innerHTML='<div class="profile-card" style="grid-column:1/-1;padding:30px;text-align:center;color:#aaa">لا توجد بروفايلات منشورة حاليًا.</div>';
+      return;
+    }
+    const lang=localStorage.getItem("istanbulNightsLanguage")==="en"?"en":"ar";
+    grid.innerHTML=profiles.map(p=>{
+      const name=lang==="en"?(p.name_en||p.name_ar):(p.name_ar||p.name_en);
+      const bio=lang==="en"?(p.bio_en||p.bio_ar):(p.bio_ar||p.bio_en);
+      const photo=p.image_url||((Array.isArray(p.gallery)&&p.gallery[0])||"");
+      const wa=(p.whatsapp||"").replace(/[^0-9]/g,"");
+      const msg=lang==="en"?`Hello, I would like to contact ${name} from Istanbul Nights.`:`مرحبًا، أريد التواصل مع ${name} من ليالي إسطنبول.`;
+      const waUrl=wa?`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`:"#";
+      return `<article class="profile-card"><a href="profile.html?slug=${encodeURIComponent(p.slug)}"><div class="profile-photo"><img src="${photo}" alt="${name}" loading="lazy"></div></a><div class="profile-info"><div class="profile-name">${name}</div><div class="profile-age">${p.age? p.age+" • ":""}Istanbul</div><div class="profile-text">${bio||""}</div><div class="profile-actions"><a class="profile-btn" href="profile.html?slug=${encodeURIComponent(p.slug)}">${lang==="en"?"View Profile":"عرض البروفايل"}</a><a class="profile-btn profile-secondary" href="${waUrl}" target="_blank" rel="noopener">${lang==="en"?"WhatsApp":"واتساب"}</a></div></div></article>`;
+    }).join("");
+  }catch(e){
+    grid.innerHTML='<div class="profile-card" style="grid-column:1/-1;padding:30px;text-align:center;color:#aaa">تعذر تحميل البروفايلات الآن.</div>';
+  }
+}
+
 const translations={
 ar:{
 logoAr:"ليالي إسطنبول",menuProfiles:"البروفايلات",menuExperience:"التجربة",menuNights:"السهرات",
@@ -286,11 +322,13 @@ if(translations[language][key]) el.innerHTML=translations[language][key];
 document.getElementById("arBtn").classList.toggle("active",language==="ar");
 document.getElementById("enBtn").classList.toggle("active",language==="en");
 localStorage.setItem("istanbulNightsLanguage",language);
+if(document.getElementById("profilesGrid")) loadProfiles();
 }
 function openMenu(){document.getElementById("mobileMenu").classList.add("open")}
 function closeMenu(){document.getElementById("mobileMenu").classList.remove("open")}
 document.addEventListener("DOMContentLoaded",()=>{
 setLanguage(localStorage.getItem("istanbulNightsLanguage")==="en"?"en":"ar");
+loadProfiles();
 });
 </script>
 </body>
