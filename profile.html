@@ -1,47 +1,309 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>بروفايل | ليالي إسطنبول</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>البروفايل | ليالي إسطنبول</title>
 <meta name="description" content="شاهد صور ومعلومات البروفايل على ليالي إسطنبول.">
-<meta name="robots" content="index, follow"><meta name="theme-color" content="#080808">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#080808">
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-a{color:inherit;text-decoration:none}.wrap{max-width:1050px;margin:auto;padding:22px}
-.top{display:flex;justify-content:space-between;align-items:center}.logo{font-weight:900;font-size:19px}.gold{color:#d8b56a}
-.lang button{border:1px solid #555;background:#111;color:#aaa;border-radius:20px;padding:7px 11px}.lang .active{background:#d8b56a;color:#050505}
-.hero{margin-top:35px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}.main-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;border:1px solid rgba(216,181,106,.3)}
-h1{font-size:clamp(34px,7vw,60px);margin:0 0 5px}.age{color:#d8b56a;font-size:16px}.bio{color:#aaa;font-size:17px;line-height:1.9;margin:22px 0}.wa{display:flex;justify-content:center;padding:15px 22px;border-radius:40px;background:#d8b56a;color:#080808;font-weight:900}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}
-.back{display:inline-block;margin-top:35px;color:#d8b56a}
-@media(max-width:700px){.hero{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
-</style></head><body>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#070707;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+:root{--gold:#d8b56a;--gold-light:#f2d58d}
+.wrap{width:100%;max-width:1150px;margin:auto;padding:20px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid rgba(216,181,106,.18);padding:8px 0 18px}
+.logo{font-weight:900;font-size:20px;text-align:right}
+.logo small{display:block;color:var(--gold);font-size:10px;letter-spacing:3px;margin-top:3px}
+.back{border:1px solid rgba(216,181,106,.65);border-radius:30px;padding:11px 18px;color:var(--gold);font-weight:800}
+.status{padding:55px 20px;text-align:center;color:#aaa}
+.profile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:30px;align-items:start;padding:35px 0 60px}
+.main-photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:26px;border:1px solid rgba(216,181,106,.28);display:block;cursor:pointer;background:#111}
+.name{font-size:clamp(34px,7vw,62px);line-height:1.05;margin:8px 0}
+.age{color:var(--gold);font-size:17px;margin-bottom:16px}
+.bio{color:#bcbcbc;font-size:17px;line-height:1.9;white-space:pre-line;margin:0 0 25px}
+.wa{display:flex;align-items:center;justify-content:center;min-height:54px;padding:13px 20px;border-radius:40px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#080808;font-weight:900}
+.gallery-title{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:800;margin:28px 0 12px;text-transform:uppercase}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.thumb{width:100%;aspect-ratio:1;object-fit:cover;border-radius:15px;border:1px solid rgba(216,181,106,.18);cursor:pointer;display:block}
+.thumb.active{border:2px solid var(--gold)}
+.bottom-back{display:inline-flex;margin:0 0 35px;border:1px solid rgba(216,181,106,.65);border-radius:30px;padding:11px 18px;color:var(--gold);font-weight:800}
+#lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;padding:20px}
+#lightbox.open{display:flex}
+#lightbox img{max-width:94vw;max-height:84vh;object-fit:contain;border-radius:14px}
+.lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid rgba(216,181,106,.8);background:rgba(15,15,15,.92);color:var(--gold);font-size:30px;display:flex;align-items:center;justify-content:center}
+.lb-close{top:18px;right:18px}
+.lb-prev{left:16px;top:50%;transform:translateY(-50%)}
+.lb-next{right:16px;top:50%;transform:translateY(-50%)}
+#counter{position:absolute;bottom:20px;color:var(--gold);font-weight:800}
+@media(max-width:700px){
+.wrap{padding:14px}
+.top{padding-bottom:14px}
+.profile{grid-template-columns:1fr;gap:22px;padding-top:25px}
+.main-photo{aspect-ratio:4/5}
+.gallery{grid-template-columns:repeat(3,1fr)}
+.name{font-size:42px}
+.bio{font-size:16px}
+}
+</style>
+</head>
+
+<body>
 <div class="wrap">
-<header class="top"><a class="logo" href="index.html">ليالي إسطنبول <span class="gold">ISTANBUL NIGHTS</span></a>
-<div class="lang"><button id="ar" class="active" onclick="setLang('ar')">AR</button><button id="en" onclick="setLang('en')">EN</button></div></header>
-<main id="profile">جاري تحميل البروفايل...</main>
-<a class="back" href="index.html?return=profiles">← العودة إلى البروفايلات</a>
+
+<header class="top">
+<a class="back" href="index.html#profiles">← العودة</a>
+<a class="logo" href="index.html">ليالي إسطنبول<small>ISTANBUL NIGHTS</small></a>
+</header>
+
+<div id="status" class="status">جاري تحميل البروفايل...</div>
+<main id="profile" style="display:none"></main>
+
+<a class="bottom-back" href="index.html#profiles">← العودة إلى البروفايلات</a>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<div id="lightbox" aria-hidden="true">
+<button class="lb-btn lb-close" onclick="closeLightbox()">×</button>
+<button class="lb-btn lb-prev" onclick="prevImage()">‹</button>
+<img id="lbImg" alt="">
+<button class="lb-btn lb-next" onclick="nextImage()">›</button>
+<div id="counter"></div>
+</div>
+
 <script>
-const SUPABASE_URL="https://edeczxsfhijkdglyrwqk.supabase.co";
-const SUPABASE_ANON_KEY="PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
-const fallback={selin:{id:"selin",name_ar:"Selin",name_en:"Selin",age:25,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=85&w=1000",gallery:[]}};
-let lang=localStorage.getItem("istanbulNightsLanguage")==="en"?"en":"ar";
-let images=[];
-let currentIndex=0;
-function setLang(l){lang=l;document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";document.getElementById("ar").classList.toggle("active",l==="ar");document.getElementById("en").classList.toggle("active",l==="en");render(window.__profile);}
-function msg(p){let n=lang==="en"?(p.name_en||p.name_ar):(p.name_ar||p.name_en);return lang==="en"?`Hello, I would like to contact ${n}. I found the profile on Istanbul Nights and would like more information.`:`مرحباً، أرغب في التواصل مع العضوة ${n}. وجدت بروفايلها على موقع ليالي إسطنبول وأرغب في معرفة المزيد.`}
-function normalizeGallery(g){if(!g)return [];if(typeof g==="string"){try{g=JSON.parse(g)}catch(e){g=[]}}return Array.isArray(g)?g.filter(x=>typeof x==="string"&&x.trim()):[]}
-function render(p){if(!p)return;window.__profile=p;let n=lang==="en"?(p.name_en||p.name_ar):(p.name_ar||p.name_en),b=lang==="en"?(p.bio_en||p.bio_ar):(p.bio_ar||p.bio_en);let phone=(p.whatsapp||"").replace(/\D/g,"");images=[];if(p.image_url)images.push(p.image_url);for(const x of normalizeGallery(p.gallery)){if(!images.includes(x))images.push(x)}
-let galleryHtml=images.map((x,i)=>`<img src="${x}" alt="${n}" loading="lazy" onclick="openLightbox(${i})">`).join("");
-document.getElementById("profile").innerHTML=`<div class="hero"><div><img class="main-img" id="mainPhoto" src="${images[0]||""}" alt="${n}" onclick="openLightbox(0)" style="cursor:pointer"></div><div><h1>${n}</h1><div class="age">${p.age||""}</div><p class="bio">${b||""}</p><a class="wa" href="${phone?`https://wa.me/${phone}?text=${encodeURIComponent(msg(p))}`:"#"}">${lang==="en"?"Contact via WhatsApp":"تواصل عبر واتساب"}</a><div class="gallery">${galleryHtml}</div></div></div>`}
-function openLightbox(index){if(!images.length)return;currentIndex=index;let lb=document.getElementById("lightbox");if(!lb){lb=document.createElement("div");lb.id="lightbox";lb.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px";lb.innerHTML=`<button onclick="closeLightbox()" style="position:absolute;top:18px;right:20px;width:45px;height:45px;border-radius:50%;background:#111;color:#d8b56a;border:1px solid #d8b56a;font-size:27px">×</button><button onclick="prevImage()" style="position:absolute;left:15px;top:50%;width:48px;height:48px;border-radius:50%;background:#111;color:#d8b56a;border:1px solid #d8b56a;font-size:25px">‹</button><img id="lbImg" style="max-width:95vw;max-height:88vh;object-fit:contain;border-radius:10px"><button onclick="nextImage()" style="position:absolute;right:15px;top:50%;width:48px;height:48px;border-radius:50%;background:#111;color:#d8b56a;border:1px solid #d8b56a;font-size:25px">›</button><div id="lbCounter" style="position:absolute;bottom:18px;color:#d8b56a"></div>`;document.body.appendChild(lb)}lb.style.display="flex";document.body.style.overflow="hidden";updateLightbox()}
-function updateLightbox(){document.getElementById("lbImg").src=images[currentIndex];document.getElementById("lbCounter").textContent=`${currentIndex+1} / ${images.length}`;let m=document.getElementById("mainPhoto");if(m)m.src=images[currentIndex]}
-function closeLightbox(){let lb=document.getElementById("lightbox");if(lb)lb.style.display="none";document.body.style.overflow=""}
-function nextImage(){if(!images.length)return;currentIndex=(currentIndex+1)%images.length;updateLightbox()}
-function prevImage(){if(!images.length)return;currentIndex=(currentIndex-1+images.length)%images.length;updateLightbox()}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox();if(e.key==="ArrowRight")nextImage();if(e.key==="ArrowLeft")prevImage()});
-async function load(){let slug=new URLSearchParams(location.search).get("slug")||"selin";let p=fallback[slug]||fallback.selin;if(SUPABASE_URL&&SUPABASE_ANON_KEY&&!SUPABASE_ANON_KEY.includes("PASTE_YOUR")){let s=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);let {data,error}=await s.from("profiles").select("*").eq("slug",slug).eq("active",true).single();if(!error&&data)p=data;}render(p)}
-load();
-</script></body></html>
+const SUPABASE_URL = "https://edeczxsfhijkdglyrwqk.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_2RrItkJ4-M2JysNR8gOZZQ_Mo4GvpqC";
+
+let lang = localStorage.getItem("istanbulNightsLanguage")==="en" ? "en" : "ar";
+let profileData = null;
+let images = [];
+let currentIndex = 0;
+
+function normalizeGallery(g){
+if(!g)return[];
+if(typeof g==="string"){
+try{g=JSON.parse(g)}catch(e){return[]}
+}
+if(!Array.isArray(g))return[];
+return g.filter(x=>typeof x==="string"&&x.trim());
+}
+
+function escapeHtml(value){
+return String(value??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function whatsappUrl(p){
+const phone=(p.whatsapp||"").replace(/\D/g,"");
+if(!phone)return"#";
+
+const name=lang==="en"
+?(p.name_en||p.name_ar||"")
+:(p.name_ar||p.name_en||"");
+
+const text=lang==="en"
+?`Hello, I would like to contact ${name} from Istanbul Nights.`
+:`مرحبًا، أريد التواصل مع ${name} من ليالي إسطنبول.`;
+
+return`https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+}
+
+function render(p){
+profileData=p;
+
+const name=lang==="en"
+?(p.name_en||p.name_ar||"")
+:(p.name_ar||p.name_en||"");
+
+const bio=lang==="en"
+?(p.bio_en||p.bio_ar||"")
+:(p.bio_ar||p.bio_en||"");
+
+images=[];
+
+if(p.image_url)images.push(p.image_url);
+
+for(const img of normalizeGallery(p.gallery)){
+if(!images.includes(img))images.push(img);
+}
+
+if(!images.length){
+document.getElementById("status").textContent="لا توجد صور لهذا البروفايل.";
+return;
+}
+
+const gallery=images.map((src,i)=>`
+<img class="thumb ${i===0?"active":""}"
+src="${escapeHtml(src)}"
+alt="${escapeHtml(name)}"
+loading="lazy"
+onclick="selectImage(${i})">
+`).join("");
+
+document.getElementById("profile").innerHTML=`
+<section class="profile">
+
+<div>
+<img id="mainPhoto"
+class="main-photo"
+src="${escapeHtml(images[0])}"
+alt="${escapeHtml(name)}"
+onclick="openLightbox(0)">
+</div>
+
+<div>
+<h1 class="name">${escapeHtml(name)}</h1>
+
+<div class="age">
+${p.age?escapeHtml(p.age):""}
+${p.age?" • ":""}إسطنبول
+</div>
+
+<p class="bio">${escapeHtml(bio)}</p>
+
+<a class="wa"
+href="${whatsappUrl(p)}"
+target="_blank"
+rel="noopener">
+تواصل عبر واتساب
+</a>
+
+<div class="gallery-title">الصور</div>
+
+<div class="gallery">
+${gallery}
+</div>
+
+</div>
+</section>
+`;
+
+document.getElementById("status").style.display="none";
+document.getElementById("profile").style.display="block";
+}
+
+function selectImage(i){
+if(!images[i])return;
+
+currentIndex=i;
+
+const main=document.getElementById("mainPhoto");
+if(main)main.src=images[i];
+
+document.querySelectorAll(".thumb")
+.forEach((el,idx)=>el.classList.toggle("active",idx===i));
+}
+
+function openLightbox(i){
+if(!images.length)return;
+
+currentIndex=i;
+updateLightbox();
+
+document.getElementById("lightbox").classList.add("open");
+document.getElementById("lightbox").setAttribute("aria-hidden","false");
+document.body.style.overflow="hidden";
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").classList.remove("open");
+document.getElementById("lightbox").setAttribute("aria-hidden","true");
+document.body.style.overflow="";
+}
+
+function updateLightbox(){
+document.getElementById("lbImg").src=images[currentIndex];
+document.getElementById("counter").textContent=
+`${currentIndex+1} / ${images.length}`;
+}
+
+function nextImage(){
+if(!images.length)return;
+
+currentIndex=(currentIndex+1)%images.length;
+selectImage(currentIndex);
+updateLightbox();
+}
+
+function prevImage(){
+if(!images.length)return;
+
+currentIndex=(currentIndex-1+images.length)%images.length;
+selectImage(currentIndex);
+updateLightbox();
+}
+
+document.addEventListener("keydown",e=>{
+if(e.key==="Escape")closeLightbox();
+if(e.key==="ArrowRight")nextImage();
+if(e.key==="ArrowLeft")prevImage();
+});
+
+let touchStartX=0;
+
+document.getElementById("lightbox")
+.addEventListener("touchstart",e=>{
+touchStartX=e.changedTouches[0].screenX;
+},{passive:true});
+
+document.getElementById("lightbox")
+.addEventListener("touchend",e=>{
+const dx=e.changedTouches[0].screenX-touchStartX;
+if(Math.abs(dx)>45){
+dx<0?nextImage():prevImage();
+}
+},{passive:true});
+
+async function loadProfile(){
+
+const slug=new URLSearchParams(location.search).get("slug");
+
+if(!slug){
+document.getElementById("status").textContent="لم يتم تحديد البروفايل.";
+return;
+}
+
+try{
+
+const res=await fetch(
+SUPABASE_URL+
+"/rest/v1/profiles?select=*&slug=eq."+
+encodeURIComponent(slug)+
+"&active=eq.true&limit=1",
+{
+headers:{
+"apikey":SUPABASE_PUBLISHABLE_KEY,
+"Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY
+}
+}
+);
+
+if(!res.ok)throw new Error("Profile request failed");
+
+const rows=await res.json();
+
+if(!rows.length){
+document.getElementById("status").textContent="البروفايل غير موجود.";
+return;
+}
+
+render(rows[0]);
+
+}catch(err){
+
+console.error(err);
+
+document.getElementById("status").textContent=
+"تعذر تحميل هذا البروفايل الآن.";
+}
+}
+
+loadProfile();
+</script>
+
+</body>
+</html>
