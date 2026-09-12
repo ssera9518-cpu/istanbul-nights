@@ -88,6 +88,10 @@ async function openProfileModal(slug){
   status.style.display="none";
  }catch(e){console.error(e);status.textContent="تعذر تحميل هذا البروفايل الآن."}
 }
+window.openProfileModal=openProfileModal;
+window.closeProfileModal=closeProfileModal;
+window.selectModalImage=selectModalImage;
+
 function selectModalImage(i){if(!modalImages[i])return;modalCurrentIndex=i;const m=document.getElementById("modalMainPhoto");if(m)m.src=modalImages[i];document.querySelectorAll(".modal-thumb").forEach((x,n)=>x.classList.toggle("active",n===i))}
 function closeProfileModal(){const m=document.getElementById("profileModal");m.classList.remove("open");m.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open");document.getElementById("profileModalContent").innerHTML="";document.getElementById("profileModalStatus").style.display="block"}
 document.getElementById("profileModal").addEventListener("click",e=>{if(e.target.id==="profileModal")closeProfileModal()});
