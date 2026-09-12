@@ -271,8 +271,8 @@ async function loadProfiles(){
       const waUrl=wa?`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`:"#";
       return `<article class="profile-card"><a href="profile.html?slug=${encodeURIComponent(p.slug)}"><div class="profile-photo"><img src="${photo}" alt="${name}" loading="lazy"></div></a><div class="profile-info"><div class="profile-name">${name}</div><div class="profile-age">${p.age? p.age+" • ":""}Istanbul</div><div class="profile-text">${bio||""}</div><div class="profile-actions"><a class="profile-btn" href="profile.html?slug=${encodeURIComponent(p.slug)}">${lang==="en"?"View Profile":"عرض البروفايل"}</a><a class="profile-btn profile-secondary" href="${waUrl}" target="_blank" rel="noopener">${lang==="en"?"WhatsApp":"واتساب"}</a></div></div></article>`;
     }).join("");
-   const returnToProfiles =
-  new URLSearchParams(location.search).get("return")==="profiles";
+  const returnToProfiles =
+  location.hash === "#profiles";
 
 if(returnToProfiles){
   requestAnimationFrame(()=>{
