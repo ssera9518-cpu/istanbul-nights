@@ -7,42 +7,208 @@
 <meta name="description" content="شاهد صور ومعلومات البروفايل على ليالي إسطنبول.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#080808">
+
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:auto}
 body{margin:0;background:#070707;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit}
-:root{--gold:#d8b56a;--gold-light:#f2d58d}
-.wrap{width:100%;max-width:1150px;margin:auto;padding:20px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:15px;border-bottom:1px solid rgba(216,181,106,.18);padding:8px 0 18px}
-.logo{font-weight:900;font-size:20px;text-align:right}
-.logo small{display:block;color:var(--gold);font-size:10px;letter-spacing:3px;margin-top:3px}
-.back{border:1px solid rgba(216,181,106,.65);border-radius:30px;padding:11px 18px;color:var(--gold);font-weight:800}
-.status{padding:55px 20px;text-align:center;color:#aaa}
-.profile{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:30px;align-items:start;padding:35px 0 60px}
-.main-photo{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:26px;border:1px solid rgba(216,181,106,.28);display:block;cursor:pointer;background:#111}
-.name{font-size:clamp(34px,7vw,62px);line-height:1.05;margin:8px 0}
-.age{color:var(--gold);font-size:17px;margin-bottom:16px}
-.bio{color:#bcbcbc;font-size:17px;line-height:1.9;white-space:pre-line;margin:0 0 25px}
-.wa{display:flex;align-items:center;justify-content:center;min-height:54px;padding:13px 20px;border-radius:40px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#080808;font-weight:900}
-.gallery-title{color:var(--gold);font-size:12px;letter-spacing:3px;font-weight:800;margin:28px 0 12px;text-transform:uppercase}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.thumb{width:100%;aspect-ratio:1;object-fit:cover;border-radius:15px;border:1px solid rgba(216,181,106,.18);cursor:pointer;display:block}
-.thumb.active{border:2px solid var(--gold)}
-.bottom-back{display:inline-flex;margin:0 0 35px;border:1px solid rgba(216,181,106,.65);border-radius:30px;padding:11px 18px;color:var(--gold);font-weight:800}
-#lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;padding:20px}
-#lightbox.open{display:flex}
-#lightbox img{max-width:94vw;max-height:84vh;object-fit:contain;border-radius:14px}
-.lb-btn{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid rgba(216,181,106,.8);background:rgba(15,15,15,.92);color:var(--gold);font-size:30px;display:flex;align-items:center;justify-content:center}
+
+:root{
+--gold:#d8b56a;
+--gold-light:#f2d58d
+}
+
+.wrap{
+width:100%;
+max-width:1150px;
+margin:auto;
+padding:20px
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+border-bottom:1px solid rgba(216,181,106,.18);
+padding:8px 0 18px
+}
+
+.logo{
+font-weight:900;
+font-size:20px;
+text-align:right
+}
+
+.logo small{
+display:block;
+color:var(--gold);
+font-size:10px;
+letter-spacing:3px;
+margin-top:3px
+}
+
+.back{
+border:1px solid rgba(216,181,106,.65);
+border-radius:30px;
+padding:11px 18px;
+color:var(--gold);
+font-weight:800
+}
+
+.status{
+padding:55px 20px;
+text-align:center;
+color:#aaa
+}
+
+.profile{
+display:grid;
+grid-template-columns:minmax(0,1fr) minmax(0,.85fr);
+gap:30px;
+align-items:start;
+padding:35px 0 60px
+}
+
+.main-photo{
+width:100%;
+aspect-ratio:4/5;
+object-fit:cover;
+border-radius:26px;
+border:1px solid rgba(216,181,106,.28);
+display:block;
+cursor:pointer;
+background:#111
+}
+
+.name{
+font-size:clamp(34px,7vw,62px);
+line-height:1.05;
+margin:8px 0
+}
+
+.age{
+color:var(--gold);
+font-size:17px;
+margin-bottom:16px
+}
+
+.bio{
+color:#bcbcbc;
+font-size:17px;
+line-height:1.9;
+white-space:pre-line;
+margin:0 0 25px
+}
+
+.wa{
+display:flex;
+align-items:center;
+justify-content:center;
+min-height:54px;
+padding:13px 20px;
+border-radius:40px;
+background:linear-gradient(135deg,var(--gold-light),var(--gold));
+color:#080808;
+font-weight:900
+}
+
+.gallery-title{
+color:var(--gold);
+font-size:12px;
+letter-spacing:3px;
+font-weight:800;
+margin:28px 0 12px;
+text-transform:uppercase
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px
+}
+
+.thumb{
+width:100%;
+aspect-ratio:1;
+object-fit:cover;
+border-radius:15px;
+border:1px solid rgba(216,181,106,.18);
+cursor:pointer;
+display:block
+}
+
+.thumb.active{
+border:2px solid var(--gold)
+}
+
+.bottom-back{
+display:inline-flex;
+margin:0 0 35px;
+border:1px solid rgba(216,181,106,.65);
+border-radius:30px;
+padding:11px 18px;
+color:var(--gold);
+font-weight:800
+}
+
+#lightbox{
+position:fixed;
+inset:0;
+z-index:9999;
+background:rgba(0,0,0,.96);
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px
+}
+
+#lightbox.open{
+display:flex
+}
+
+#lightbox img{
+max-width:94vw;
+max-height:84vh;
+object-fit:contain;
+border-radius:14px
+}
+
+.lb-btn{
+position:absolute;
+width:48px;
+height:48px;
+border-radius:50%;
+border:1px solid rgba(216,181,106,.8);
+background:rgba(15,15,15,.92);
+color:var(--gold);
+font-size:30px;
+display:flex;
+align-items:center;
+justify-content:center
+}
+
 .lb-close{top:18px;right:18px}
 .lb-prev{left:16px;top:50%;transform:translateY(-50%)}
 .lb-next{right:16px;top:50%;transform:translateY(-50%)}
-#counter{position:absolute;bottom:20px;color:var(--gold);font-weight:800}
+
+#counter{
+position:absolute;
+bottom:20px;
+color:var(--gold);
+font-weight:800
+}
+
 @media(max-width:700px){
 .wrap{padding:14px}
 .top{padding-bottom:14px}
-.profile{grid-template-columns:1fr;gap:22px;padding-top:25px}
+.profile{
+grid-template-columns:1fr;
+gap:22px;
+padding-top:25px
+}
 .main-photo{aspect-ratio:4/5}
 .gallery{grid-template-columns:repeat(3,1fr)}
 .name{font-size:42px}
@@ -52,53 +218,91 @@ button{font-family:inherit}
 </head>
 
 <body>
+
 <div class="wrap">
 
 <header class="top">
-<a class="back" href="index.html#profiles">← العودة</a>
-<a class="logo" href="index.html">ليالي إسطنبول<small>ISTANBUL NIGHTS</small></a>
+
+<a class="back" href="index.html?return=profiles">
+← العودة
+</a>
+
+<a class="logo" href="index.html">
+ليالي إسطنبول
+<small>ISTANBUL NIGHTS</small>
+</a>
+
 </header>
 
-<div id="status" class="status">جاري تحميل البروفايل...</div>
+<div id="status" class="status">
+جاري تحميل البروفايل...
+</div>
+
 <main id="profile" style="display:none"></main>
 
-<a class="bottom-back" href="index.html#profiles">← العودة إلى البروفايلات</a>
+<a class="bottom-back" href="index.html?return=profiles">
+← العودة إلى البروفايلات
+</a>
+
 </div>
 
 <div id="lightbox" aria-hidden="true">
+
 <button class="lb-btn lb-close" onclick="closeLightbox()">×</button>
+
 <button class="lb-btn lb-prev" onclick="prevImage()">‹</button>
+
 <img id="lbImg" alt="">
+
 <button class="lb-btn lb-next" onclick="nextImage()">›</button>
+
 <div id="counter"></div>
+
 </div>
 
 <script>
-const SUPABASE_URL = "https://edeczxsfhijkdglyrwqk.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_2RrItkJ4-M2JysNR8gOZZQ_Mo4GvpqC";
 
-let lang = localStorage.getItem("istanbulNightsLanguage")==="en" ? "en" : "ar";
-let profileData = null;
-let images = [];
-let currentIndex = 0;
+const SUPABASE_URL="https://edeczxsfhijkdglyrwqk.supabase.co";
+
+/* احتفظي بمفتاح Supabase الحالي الموجود عندك */
+
+const SUPABASE_PUBLISHABLE_KEY="sb_publishable_2RrItkJ4-M2JysNR8gOZZQ_Mo4GvpqC";
+
+let lang=localStorage.getItem("istanbulNightsLanguage")==="en"?"en":"ar";
+
+let images=[];
+let currentIndex=0;
 
 function normalizeGallery(g){
+
 if(!g)return[];
+
 if(typeof g==="string"){
-try{g=JSON.parse(g)}catch(e){return[]}
+try{g=JSON.parse(g)}
+catch(e){return[]}
 }
+
 if(!Array.isArray(g))return[];
+
 return g.filter(x=>typeof x==="string"&&x.trim());
 }
 
 function escapeHtml(value){
+
 return String(value??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
 }[c]));
+
 }
 
 function whatsappUrl(p){
+
 const phone=(p.whatsapp||"").replace(/\D/g,"");
+
 if(!phone)return"#";
 
 const name=lang==="en"
@@ -110,10 +314,10 @@ const text=lang==="en"
 :`مرحبًا، أريد التواصل مع ${name} من ليالي إسطنبول.`;
 
 return`https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
 }
 
 function render(p){
-profileData=p;
 
 const name=lang==="en"
 ?(p.name_en||p.name_ar||"")
@@ -137,158 +341,199 @@ return;
 }
 
 const gallery=images.map((src,i)=>`
-<img class="thumb ${i===0?"active":""}"
+
+<img
+class="thumb ${i===0?"active":""}"
 src="${escapeHtml(src)}"
 alt="${escapeHtml(name)}"
 loading="lazy"
 onclick="selectImage(${i})">
+
 `).join("");
 
 document.getElementById("profile").innerHTML=`
+
 <section class="profile">
 
 <div>
-<img id="mainPhoto"
+
+<img
+id="mainPhoto"
 class="main-photo"
 src="${escapeHtml(images[0])}"
 alt="${escapeHtml(name)}"
 onclick="openLightbox(0)">
+
 </div>
 
 <div>
-<h1 class="name">${escapeHtml(name)}</h1>
+
+<h1 class="name">
+${escapeHtml(name)}
+</h1>
 
 <div class="age">
 ${p.age?escapeHtml(p.age):""}
 ${p.age?" • ":""}إسطنبول
 </div>
 
-<p class="bio">${escapeHtml(bio)}</p>
+<p class="bio">
+${escapeHtml(bio)}
+</p>
 
-<a class="wa"
+<a
+class="wa"
 href="${whatsappUrl(p)}"
 target="_blank"
 rel="noopener">
+
 تواصل عبر واتساب
+
 </a>
 
-<div class="gallery-title">الصور</div>
+<div class="gallery-title">
+الصور
+</div>
 
 <div class="gallery">
 ${gallery}
 </div>
 
 </div>
+
 </section>
 `;
 
 document.getElementById("status").style.display="none";
 document.getElementById("profile").style.display="block";
+
 }
 
 function selectImage(i){
+
 if(!images[i])return;
 
 currentIndex=i;
 
 const main=document.getElementById("mainPhoto");
+
 if(main)main.src=images[i];
 
 document.querySelectorAll(".thumb")
-.forEach((el,idx)=>el.classList.toggle("active",idx===i));
+.forEach((el,idx)=>{
+el.classList.toggle("active",idx===i)
+});
+
 }
 
 function openLightbox(i){
+
 if(!images.length)return;
 
 currentIndex=i;
+
 updateLightbox();
 
 document.getElementById("lightbox").classList.add("open");
-document.getElementById("lightbox").setAttribute("aria-hidden","false");
+
 document.body.style.overflow="hidden";
+
 }
 
 function closeLightbox(){
+
 document.getElementById("lightbox").classList.remove("open");
-document.getElementById("lightbox").setAttribute("aria-hidden","true");
+
 document.body.style.overflow="";
+
 }
 
 function updateLightbox(){
+
 document.getElementById("lbImg").src=images[currentIndex];
+
 document.getElementById("counter").textContent=
 `${currentIndex+1} / ${images.length}`;
+
 }
 
 function nextImage(){
+
 if(!images.length)return;
 
 currentIndex=(currentIndex+1)%images.length;
+
 selectImage(currentIndex);
+
 updateLightbox();
+
 }
 
 function prevImage(){
+
 if(!images.length)return;
 
 currentIndex=(currentIndex-1+images.length)%images.length;
+
 selectImage(currentIndex);
+
 updateLightbox();
+
 }
 
 document.addEventListener("keydown",e=>{
+
 if(e.key==="Escape")closeLightbox();
+
 if(e.key==="ArrowRight")nextImage();
+
 if(e.key==="ArrowLeft")prevImage();
+
 });
-
-let touchStartX=0;
-
-document.getElementById("lightbox")
-.addEventListener("touchstart",e=>{
-touchStartX=e.changedTouches[0].screenX;
-},{passive:true});
-
-document.getElementById("lightbox")
-.addEventListener("touchend",e=>{
-const dx=e.changedTouches[0].screenX-touchStartX;
-if(Math.abs(dx)>45){
-dx<0?nextImage():prevImage();
-}
-},{passive:true});
 
 async function loadProfile(){
 
 const slug=new URLSearchParams(location.search).get("slug");
 
 if(!slug){
-document.getElementById("status").textContent="لم يتم تحديد البروفايل.";
+
+document.getElementById("status").textContent=
+"لم يتم تحديد البروفايل.";
+
 return;
+
 }
 
 try{
 
 const res=await fetch(
+
 SUPABASE_URL+
 "/rest/v1/profiles?select=*&slug=eq."+
 encodeURIComponent(slug)+
 "&active=eq.true&limit=1",
+
 {
 headers:{
 "apikey":SUPABASE_PUBLISHABLE_KEY,
 "Authorization":"Bearer "+SUPABASE_PUBLISHABLE_KEY
 }
 }
+
 );
 
-if(!res.ok)throw new Error("Profile request failed");
+if(!res.ok)
+throw new Error("Profile request failed");
 
 const rows=await res.json();
 
 if(!rows.length){
-document.getElementById("status").textContent="البروفايل غير موجود.";
+
+document.getElementById("status").textContent=
+"البروفايل غير موجود.";
+
 return;
+
 }
 
 render(rows[0]);
@@ -299,10 +544,13 @@ console.error(err);
 
 document.getElementById("status").textContent=
 "تعذر تحميل هذا البروفايل الآن.";
+
 }
+
 }
 
 loadProfile();
+
 </script>
 
 </body>
