@@ -1,849 +1,231 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>سهرات اسطنبول | ليالي إسطنبول – Istanbul Nights</title>
-
-  <meta name="description" content="عِش سهرات لا تُنسى في إسطنبول. أجواء راقية، عشاء فاخر، ليالي البوسفور، سهر ممتع ولحظات استثنائية.">
-  <meta name="keywords" content="سهرات اسطنبول, سهر في اسطنبول, سهرات في اسطنبول, ليالي اسطنبول, Istanbul Nights">
-  <meta name="theme-color" content="#080808">
-
-  <meta property="og:title" content="ليالي إسطنبول | Istanbul Nights">
-  <meta property="og:description" content="عِش سهرات لا تُنسى في إسطنبول">
-  <meta property="og:type" content="website">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #080808;
-      color: #f7f2e8;
-      font-family: Arial, sans-serif;
-      line-height: 1.7;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1200px, 92%);
-      margin: auto;
-    }
-
-    /* HEADER */
-
-    header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 20;
-      padding: 20px 0;
-      background: linear-gradient(
-        rgba(0,0,0,.7),
-        transparent
-      );
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 25px;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #e5bd73;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      display: block;
-      color: #fff;
-      font-size: 10px;
-      letter-spacing: 4px;
-      direction: ltr;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      color: #e5bd73;
-    }
-
-    .whatsapp {
-      background: #e5bd73;
-      color: #111;
-      padding: 11px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-
-    /* HERO */
-
-    .hero {
-      min-height: 720px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,.95) 0%,
-          rgba(0,0,0,.65) 45%,
-          rgba(0,0,0,.15) 100%
-        ),
-        url("https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=2000&q=85")
-        center/cover;
-    }
-
-    .hero-content {
-      width: 650px;
-      max-width: 100%;
-      padding-top: 70px;
-    }
-
-    .eyebrow {
-      color: #e5bd73;
-      letter-spacing: 4px;
-      font-size: 12px;
-      margin-bottom: 20px;
-      direction: ltr;
-    }
-
-    h1 {
-      font-size: clamp(45px, 6vw, 78px);
-      line-height: 1.15;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-
-    h1 span {
-      color: #e5bd73;
-    }
-
-    .hero-text {
-      font-size: 19px;
-      color: #ddd;
-      margin-bottom: 30px;
-      max-width: 600px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: bold;
-      border: 1px solid #e5bd73;
-    }
-
-    .btn-primary {
-      background: #e5bd73;
-      color: #111;
-    }
-
-    .btn-outline {
-      background: rgba(0,0,0,.3);
-      color: white;
-    }
-
-    /* FEATURES */
-
-    .features {
-      background: #0d0d0d;
-      border-top: 1px solid #252525;
-      border-bottom: 1px solid #252525;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-    }
-
-    .feature {
-      text-align: center;
-      padding: 28px 15px;
-      border-left: 1px solid #222;
-    }
-
-    .feature:last-child {
-      border-left: 0;
-    }
-
-    .icon {
-      width: 45px;
-      height: 45px;
-      border: 1px solid #cda45d;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 12px;
-      color: #e5bd73;
-      font-size: 20px;
-    }
-
-    .feature h3 {
-      color: #e5bd73;
-      font-size: 17px;
-      margin-bottom: 5px;
-    }
-
-    .feature p {
-      color: #aaa;
-      font-size: 12px;
-    }
-
-    /* PROFILES */
-
-    section {
-      padding: 75px 0;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      margin-bottom: 35px;
-      gap: 20px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(30px, 4vw, 48px);
-    }
-
-    .section-heading p {
-      color: #aaa;
-      margin-top: 5px;
-    }
-
-    .gold {
-      color: #e5bd73;
-    }
-
-    .profiles {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .profile {
-      background: #111;
-      border: 1px solid #292929;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: .3s;
-    }
-
-    .profile:hover {
-      transform: translateY(-5px);
-      border-color: #cda45d;
-    }
-
-    .profile-image {
-      height: 360px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .profile-info {
-      padding: 16px;
-    }
-
-    .profile-name {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .profile-location {
-      color: #aaa;
-      font-size: 13px;
-      margin: 3px 0 14px;
-    }
-
-    .online {
-      color: #62d27c;
-    }
-
-    .profile-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .profile-actions a {
-      flex: 1;
-      text-align: center;
-      padding: 9px 5px;
-      border-radius: 6px;
-      font-size: 12px;
-      border: 1px solid #444;
-    }
-
-    .profile-actions .wa {
-      background: #25d366;
-      color: #fff;
-      border-color: #25d366;
-    }
-
-    /* EXPERIENCE */
-
-    .experience {
-      background:
-        linear-gradient(
-          rgba(0,0,0,.65),
-          rgba(0,0,0,.85)
-        ),
-        url("https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=1800&q=85")
-        center/cover fixed;
-    }
-
-    .experience-box {
-      max-width: 650px;
-    }
-
-    .experience-box h2 {
-      font-size: clamp(35px, 5vw, 60px);
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
-
-    .experience-box p {
-      color: #ddd;
-      font-size: 17px;
-      margin-bottom: 25px;
-    }
-
-    /* NIGHT CARDS */
-
-    .night-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .night-card {
-      min-height: 300px;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: end;
-    }
-
-    .night-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,.9));
-    }
-
-    .night-content {
-      position: relative;
-      z-index: 2;
-      padding: 20px;
-    }
-
-    .night-content h3 {
-      font-size: 22px;
-      margin-bottom: 5px;
-    }
-
-    .night-content p {
-      color: #ccc;
-      font-size: 13px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid #292929;
-      padding: 45px 0;
-      text-align: center;
-      background: #050505;
-    }
-
-    footer .logo {
-      margin-bottom: 12px;
-    }
-
-    footer p {
-      color: #777;
-      font-size: 13px;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 900px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: 680px;
-        background:
-          linear-gradient(
-            rgba(0,0,0,.72),
-            rgba(0,0,0,.88)
-          ),
-          url("https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=85")
-          center/cover;
-      }
-
-      .hero-content {
-        text-align: center;
-        margin: auto;
-      }
-
-      .hero-text {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .buttons {
-        justify-content: center;
-      }
-
-      .feature-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .feature {
-        border-bottom: 1px solid #222;
-      }
-
-      .profiles {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .night-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-
-      .container {
-        width: 90%;
-      }
-
-      header {
-        padding: 15px 0;
-      }
-
-      .logo {
-        font-size: 20px;
-      }
-
-      .whatsapp {
-        padding: 9px 12px;
-        font-size: 12px;
-      }
-
-      .hero {
-        min-height: 650px;
-      }
-
-      h1 {
-        font-size: 43px;
-      }
-
-      .hero-text {
-        font-size: 16px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .feature {
-        padding: 22px 8px;
-      }
-
-      .profiles {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .profile-image {
-        height: 250px;
-      }
-
-      .profile-info {
-        padding: 10px;
-      }
-
-      .profile-name {
-        font-size: 15px;
-      }
-
-      .profile-actions {
-        flex-direction: column;
-      }
-
-      .section-heading {
-        display: block;
-      }
-
-      .night-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .night-card {
-        min-height: 260px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سهرات اسطنبول | ليالي إسطنبول – Istanbul Nights</title>
+<meta name="description" content="عِش سهرات لا تُنسى في إسطنبول. سهر ممتع، رقص، أجواء ممتعة وبروفايلات متاحة لاختيار سهرتك.">
+<meta name="keywords" content="سهرات اسطنبول, سهر في اسطنبول, سهرات في اسطنبول, ليالي اسطنبول, Istanbul Nights">
+<meta property="og:title" content="سهرات اسطنبول | ليالي إسطنبول">
+<meta property="og:description" content="سهر ممتع، رقص، أجواء ممتعة لا تُنسى وبروفايلات لاختيار سهرتك في إسطنبول.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0a0a0a">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,"Segoe UI",sans-serif;background:#080808;color:#f5f1e8;line-height:1.8}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,92%);margin:auto}
+.gold{color:#d7b56d}
+header{position:absolute;top:0;left:0;width:100%;z-index:10;padding:22px 0;border-bottom:1px solid rgba(215,181,109,.18)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:22px;font-weight:800;letter-spacing:1px}
+.logo span{display:block;font-size:11px;letter-spacing:4px;color:#bfa46a;text-align:center;margin-top:-4px}
+nav{display:flex;gap:24px;font-size:14px;color:#ddd}
+nav a:hover{color:#d7b56d}
+
+.hero{min-height:760px;display:flex;align-items:center;position:relative;overflow:hidden;background:
+linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.35),rgba(0,0,0,.78)),
+url("https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1800&q=85") center/cover}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:180px;background:linear-gradient(transparent,#080808)}
+.hero-content{position:relative;z-index:2;max-width:720px;padding-top:90px}
+.kicker{color:#d7b56d;font-size:14px;letter-spacing:3px;margin-bottom:15px}
+h1{font-size:clamp(42px,7vw,76px);line-height:1.15;margin-bottom:20px}
+.hero-text{font-size:20px;color:#e8e2d5;margin-bottom:30px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 25px;border-radius:3px;font-weight:700;transition:.25s}
+.btn-primary{background:#d7b56d;color:#111}
+.btn-primary:hover{background:#efd28e}
+.btn-outline{border:1px solid #d7b56d;color:#e7c77d}
+.btn-outline:hover{background:#d7b56d;color:#111}
+
+section{padding:90px 0}
+.section-head{text-align:center;max-width:760px;margin:0 auto 45px}
+.section-head .eyebrow{color:#d7b56d;letter-spacing:3px;font-size:12px;margin-bottom:8px}
+.section-head h2{font-size:38px;margin-bottom:12px}
+.section-head p{color:#aaa}
+
+.features{background:#0b0b0b}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.feature{padding:30px 22px;border:1px solid rgba(215,181,109,.18);background:linear-gradient(145deg,#101010,#0a0a0a);text-align:center}
+.icon{font-size:30px;margin-bottom:12px}
+.feature h3{font-size:20px;color:#e7c77d;margin-bottom:8px}
+.feature p{color:#aaa;font-size:14px}
+
+.profiles{background:#080808}
+.profile-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.profile-card{background:#101010;border:1px solid rgba(215,181,109,.2);overflow:hidden;transition:.3s}
+.profile-card:hover{transform:translateY(-5px);border-color:#d7b56d}
+.profile-img{height:360px;background-size:cover;background-position:center}
+.profile-info{padding:20px}
+.profile-name{font-size:22px;font-weight:700}
+.profile-age{color:#d7b56d;font-size:14px;margin-right:7px}
+.profile-desc{color:#aaa;font-size:14px;margin:7px 0 15px}
+.profile-actions{display:flex;gap:8px}
+.profile-actions a{flex:1;text-align:center;padding:9px 6px;border:1px solid rgba(215,181,109,.4);font-size:13px}
+.profile-actions a:hover{background:#d7b56d;color:#111}
+
+.experience{background:linear-gradient(90deg,#0b0b0b,#111,#0b0b0b)}
+.experience-box{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.experience-image{min-height:450px;background:url("https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=85") center/cover}
+.experience h2{font-size:42px;margin-bottom:20px}
+.experience p{color:#aaa;margin-bottom:20px}
+
+.nights{background:#090909}
+.night-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.night-card{min-height:220px;padding:28px 22px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(215,181,109,.2);background-size:cover;background-position:center;position:relative;overflow:hidden}
+.night-card:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.9))}
+.night-card>*{position:relative;z-index:1}
+.night-card h3{color:#f1d38b;font-size:21px}
+.night-card p{color:#ddd;font-size:13px}
+
+.cta{padding:85px 0;text-align:center;background:radial-gradient(circle at center,#1b160d,#080808 65%)}
+.cta h2{font-size:42px;margin-bottom:15px}
+.cta p{color:#bbb;margin-bottom:25px}
+
+footer{padding:30px 0;border-top:1px solid rgba(215,181,109,.15);text-align:center;color:#888;font-size:13px}
+footer strong{color:#d7b56d}
+
+@media(max-width:900px){
+.feature-grid,.profile-grid{grid-template-columns:repeat(2,1fr)}
+.night-grid{grid-template-columns:repeat(2,1fr)}
+.experience-box{grid-template-columns:1fr}
+nav{display:none}
+.hero{min-height:700px}
+}
+@media(max-width:600px){
+.container{width:90%}
+.hero{min-height:680px;background-position:58% center}
+.hero-content{padding-top:90px}
+h1{font-size:43px}
+.hero-text{font-size:17px}
+section{padding:65px 0}
+.feature-grid,.profile-grid,.night-grid{grid-template-columns:1fr 1fr;gap:12px}
+.profile-img{height:260px}
+.profile-info{padding:14px}
+.profile-name{font-size:18px}
+.profile-actions{flex-direction:column}
+.experience-image{min-height:300px}
+.experience h2,.cta h2{font-size:32px}
+}
+</style>
 </head>
 
 <body>
-
 <header>
-  <div class="container nav">
-
-    <a href="#" class="logo">
-      ليالي إسطنبول
-      <span>ISTANBUL NIGHTS</span>
-    </a>
-
-    <nav class="nav-links">
-      <a href="#profiles">الملفات</a>
-      <a href="#nights">السهرات</a>
-      <a href="#istanbul">إسطنبول</a>
-      <a href="#contact">تواصل معنا</a>
-    </nav>
-
-    <a class="whatsapp" href="https://wa.me/" target="_blank">
-      ◉ تواصل عبر واتساب
-    </a>
-
-  </div>
+<div class="container nav">
+<a class="logo" href="#">ليالي إسطنبول<span>ISTANBUL NIGHTS</span></a>
+<nav>
+<a href="#profiles">البروفايلات</a>
+<a href="#experience">التجربة</a>
+<a href="#nights">أجواء السهر</a>
+<a href="#contact">احجز الآن</a>
+</nav>
+</div>
 </header>
 
-
 <main>
-
-  <!-- HERO -->
-
-  <section class="hero">
-    <div class="container">
-
-      <div class="hero-content">
-
-        <div class="eyebrow">
-          MORE THAN A NIGHT · A STORY IN ISTANBUL
-        </div>
-
-        <h1>
-          عِش سهرات<br>
-          <span>لا تُنسى في إسطنبول</span>
-        </h1>
-
-        <p class="hero-text">
-          عشاء فاخر • ليالي البوسفور • سهر ممتع • أجواء راقية • لحظات لا تُنسى
-        </p>
-
-        <div class="buttons">
-          <a href="#profiles" class="btn btn-primary">
-            اكتشف الآن ←
-          </a>
-
-          <a href="https://wa.me/" target="_blank" class="btn btn-outline">
-            ◉ تواصل عبر واتساب
-          </a>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- FEATURES -->
-
-  <div class="features">
-    <div class="container feature-grid">
-
-      <div class="feature">
-        <div class="icon">🍽</div>
-        <h3>عشاء فاخر</h3>
-        <p>مطاعم مميزة وأجواء استثنائية</p>
-      </div>
-
-      <div class="feature">
-        <div class="icon">🌉</div>
-        <h3>ليالي البوسفور</h3>
-        <p>إطلالات ساحرة ورحلات بحرية</p>
-      </div>
-
-      <div class="feature">
-        <div class="icon">🍸</div>
-        <h3>سهر ممتع</h3>
-        <p>موسيقى وأجواء لا تُنسى</p>
-      </div>
-
-      <div class="feature">
-        <div class="icon">✨</div>
-        <h3>أجواء راقية</h3>
-        <p>أماكن وتجارب مميزة</p>
-      </div>
-
-      <div class="feature">
-        <div class="icon">♥</div>
-        <h3>لحظات لا تُنسى</h3>
-        <p>عش إسطنبول بطريقة مختلفة</p>
-      </div>
-
-    </div>
-  </div>
-
-
-  <!-- PROFILES -->
-
-  <section id="profiles">
-
-    <div class="container">
-
-      <div class="section-heading">
-        <div>
-          <h2>أجمل <span class="gold">الملفات</span></h2>
-          <p>اكتشف الملفات المتاحة في إسطنبول</p>
-        </div>
-
-        <a href="#" class="gold">عرض جميع الملفات ←</a>
-      </div>
-
-
-      <div class="profiles">
-
-        <article class="profile">
-          <div class="profile-image"
-            style="background-image:url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85')">
-          </div>
-
-          <div class="profile-info">
-            <div class="profile-name">Selin, 25</div>
-            <div class="profile-location">
-              <span class="online">●</span> إسطنبول
-            </div>
-
-            <div class="profile-actions">
-              <a href="https://wa.me/" target="_blank" class="wa">واتساب</a>
-              <a href="#">رسالة</a>
-            </div>
-          </div>
-        </article>
-
-
-        <article class="profile">
-          <div class="profile-image"
-            style="background-image:url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=700&q=85')">
-          </div>
-
-          <div class="profile-info">
-            <div class="profile-name">Aylin, 27</div>
-            <div class="profile-location">
-              <span class="online">●</span> إسطنبول
-            </div>
-
-            <div class="profile-actions">
-              <a href="https://wa.me/" target="_blank" class="wa">واتساب</a>
-              <a href="#">رسالة</a>
-            </div>
-          </div>
-        </article>
-
-
-        <article class="profile">
-          <div class="profile-image"
-            style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85')">
-          </div>
-
-          <div class="profile-info">
-            <div class="profile-name">Elif, 24</div>
-            <div class="profile-location">
-              <span class="online">●</span> إسطنبول
-            </div>
-
-            <div class="profile-actions">
-              <a href="https://wa.me/" target="_blank" class="wa">واتساب</a>
-              <a href="#">رسالة</a>
-            </div>
-          </div>
-        </article>
-
-
-        <article class="profile">
-          <div class="profile-image"
-            style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=85')">
-          </div>
-
-          <div class="profile-info">
-            <div class="profile-name">Deniz, 28</div>
-            <div class="profile-location">
-              <span class="online">●</span> إسطنبول
-            </div>
-
-            <div class="profile-actions">
-              <a href="https://wa.me/" target="_blank" class="wa">واتساب</a>
-              <a href="#">رسالة</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ISTANBUL -->
-
-  <section id="istanbul" class="experience">
-
-    <div class="container">
-
-      <div class="experience-box">
-
-        <div class="eyebrow">
-          ISTANBUL · AFTER DARK
-        </div>
-
-        <h2>
-          عِش إسطنبول<br>
-          <span class="gold">بطريقة مختلفة</span>
-        </h2>
-
-        <p>
-          كل ليلة في إسطنبول تحمل أجواء مختلفة.
-          أماكن راقية، إطلالات مذهلة، موسيقى،
-          سهر ممتع ولحظات تستحق أن تُعاش.
-        </p>
-
-        <a href="#nights" class="btn btn-primary">
-          اكتشف إسطنبول
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- NIGHTS -->
-
-  <section id="nights">
-
-    <div class="container">
-
-      <div class="section-heading">
-        <div>
-          <h2>عِش <span class="gold">سهرات لا تُنسى</span></h2>
-          <p>كل ما يجعل ليل إسطنبول مختلفاً</p>
-        </div>
-      </div>
-
-
-      <div class="night-grid">
-
-        <article class="night-card"
-          style="background-image:url('https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85')">
-          <div class="night-content">
-            <h3>عشاء فاخر</h3>
-            <p>أجواء رومانسية ومطاعم مميزة</p>
-          </div>
-        </article>
-
-
-        <article class="night-card"
-          style="background-image:url('https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=900&q=85')">
-          <div class="night-content">
-            <h3>ليالي البوسفور</h3>
-            <p>إطلالات ساحرة حتى آخر الليل</p>
-          </div>
-        </article>
-
-
-        <article class="night-card"
-          style="background-image:url('https://images.unsplash.com/photo-1571266028243-d220c9c3b6b3?auto=format&fit=crop&w=900&q=85')">
-          <div class="night-content">
-            <h3>الرقص والسهر</h3>
-            <p>موسيقى وأجواء ليلية ممتعة</p>
-          </div>
-        </article>
-
-
-        <article class="night-card"
-          style="background-image:url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=900&q=85')">
-          <div class="night-content">
-            <h3>ليالي فاخرة</h3>
-            <p>أماكن راقية وتجارب استثنائية</p>
-          </div>
-        </article>
-
-      </div>
-
-    </div>
-
-  </section>
-
+<section class="hero">
+<div class="container hero-content">
+<div class="kicker">ISTANBUL • NIGHTLIFE</div>
+<h1>عِش سهرات لا تُنسى في إسطنبول</h1>
+<p class="hero-text">سهر ممتع • رقص • أجواء ممتعة لا تُنسى</p>
+<div class="buttons">
+<a href="#profiles" class="btn btn-primary">احجز موعدك الآن ←</a>
+<a href="#profiles" class="btn btn-outline">◉ تواصل عبر واتساب</a>
+</div>
+</div>
+</section>
+
+<section class="features">
+<div class="container">
+<div class="section-head">
+<div class="eyebrow">ISTANBUL NIGHTS</div>
+<h2>كل ما تحتاجه لسهرة ممتعة</h2>
+<p>اختر أجواء ليلتك واستمتع بوقت مختلف في إسطنبول.</p>
+</div>
+<div class="feature-grid">
+<div class="feature"><div class="icon">✨</div><h3>بنات وسهر ممتع</h3><p>اختَر البروفايل الذي يناسب أجواء سهرتك</p></div>
+<div class="feature"><div class="icon">🌙</div><h3>أجواء ليلية</h3><p>أجواء ليلية مميزة وسهر لا يُنسى</p></div>
+<div class="feature"><div class="icon">💃</div><h3>موسيقى ورقص</h3><p>إيقاع ممتع وأجواء تجعل ليلتك مختلفة</p></div>
+<div class="feature"><div class="icon">🥂</div><h3>سهرة على ذوقك</h3><p>اختر البروفايل المناسب واستمتع بوقتك</p></div>
+</div>
+</div>
+</section>
+
+<section class="profiles" id="profiles">
+<div class="container">
+<div class="section-head">
+<div class="eyebrow">OUR PROFILES</div>
+<h2>اختر البروفايل الذي يناسب سهرتك</h2>
+<p>تصفح البروفايلات واكتشف من يناسب أجواء ليلتك في إسطنبول.</p>
+</div>
+<div class="profile-grid">
+
+<article class="profile-card">
+<div class="profile-img" style="background-image:url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=85')"></div>
+<div class="profile-info"><div class="profile-name">Selin <span class="profile-age">25</span></div><p class="profile-desc">أجواء ممتعة، موسيقى ورقص.</p><div class="profile-actions"><a href="#">الملف الكامل</a><a href="#profiles">واتساب</a></div></div>
+</article>
+
+<article class="profile-card">
+<div class="profile-img" style="background-image:url('https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85')"></div>
+<div class="profile-info"><div class="profile-name">Aylin <span class="profile-age">27</span></div><p class="profile-desc">سهرة مميزة وأجواء ليلية.</p><div class="profile-actions"><a href="#">الملف الكامل</a><a href="#profiles">واتساب</a></div></div>
+</article>
+
+<article class="profile-card">
+<div class="profile-img" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=85')"></div>
+<div class="profile-info"><div class="profile-name">Elif <span class="profile-age">24</span></div><p class="profile-desc">موسيقى، رقص ولحظات لا تُنسى.</p><div class="profile-actions"><a href="#">الملف الكامل</a><a href="#profiles">واتساب</a></div></div>
+</article>
+
+<article class="profile-card">
+<div class="profile-img" style="background-image:url('https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=900&q=85')"></div>
+<div class="profile-info"><div class="profile-name">Deniz <span class="profile-age">28</span></div><p class="profile-desc">أجواء حيوية وسهر ممتع.</p><div class="profile-actions"><a href="#">الملف الكامل</a><a href="#profiles">واتساب</a></div></div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section class="experience" id="experience">
+<div class="container experience-box">
+<div class="experience-image"></div>
+<div>
+<div class="eyebrow gold">THE NIGHT</div>
+<h2>عِش إسطنبول بطريقة مختلفة</h2>
+<p>كل ليلة في إسطنبول لها أجواؤها. موسيقى، رقص، سهر ممتع، ولحظات لا تُنسى.</p>
+<a href="#profiles" class="btn btn-primary">اختر البروفايل المناسب</a>
+</div>
+</div>
+</section>
+
+<section class="nights" id="nights">
+<div class="container">
+<div class="section-head">
+<div class="eyebrow">NIGHT EXPERIENCES</div>
+<h2>أجواء ليلية لا تُنسى</h2>
+<p>اختر ما يناسب مزاجك واستعد لسهرة مختلفة.</p>
+</div>
+<div class="night-grid">
+<div class="night-card" style="background-image:url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85')"><h3>سهر ممتع</h3><p>وقت ممتع وأجواء ليلية مميزة.</p></div>
+<div class="night-card" style="background-image:url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85')"><h3>رقص وأجواء حيوية</h3><p>موسيقى وإيقاع يرفع مستوى السهرة.</p></div>
+<div class="night-card" style="background-image:url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=900&q=85')"><h3>ليلة لا تُنسى</h3><p>اصنع ذكريات مختلفة في إسطنبول.</p></div>
+<div class="night-card" style="background-image:url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=85')"><h3>أجواء إسطنبول الليلية</h3><p>اكتشف إيقاع المدينة بعد غروب الشمس.</p></div>
+</div>
+</div>
+</section>
+
+<section class="cta" id="contact">
+<div class="container">
+<h2>احجز موعدك الآن مع البروفايل الذي يناسبك</h2>
+<p>اختر البروفايل الذي يناسب أجواء سهرتك في إسطنبول.</p>
+<a href="#profiles" class="btn btn-primary">احجز موعدك الآن ←</a>
+</div>
+</section>
 </main>
 
-
-<footer id="contact">
-
-  <div class="container">
-
-    <div class="logo">
-      ليالي إسطنبول
-      <span>ISTANBUL NIGHTS</span>
-    </div>
-
-    <p>
-      عِش سهرات لا تُنسى في إسطنبول
-    </p>
-
-    <p style="margin-top:15px;">
-      © 2026 Istanbul Nights
-    </p>
-
-  </div>
-
+<footer>
+<div class="container">© 2026 <strong>ليالي إسطنبول | ISTANBUL NIGHTS</strong> — عِش سهرات لا تُنسى في إسطنبول.</div>
 </footer>
-
 </body>
 </html>
