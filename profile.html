@@ -1,38 +1,633 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>بروفايل | ليالي إسطنبول</title>
-<meta name="description" content="شاهد صور ومعلومات البروفايل على ليالي إسطنبول.">
-<meta name="robots" content="index, follow"><meta name="theme-color" content="#080808">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الملف الشخصي | ليالي إسطنبول</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-a{color:inherit;text-decoration:none}.wrap{max-width:1050px;margin:auto;padding:22px}
-.top{display:flex;justify-content:space-between;align-items:center}.logo{font-weight:900;font-size:19px}.gold{color:#d8b56a}
-.lang button{border:1px solid #555;background:#111;color:#aaa;border-radius:20px;padding:7px 11px}.lang .active{background:#d8b56a;color:#050505}
-.hero{margin-top:35px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}.main-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:24px;border:1px solid rgba(216,181,106,.3)}
-h1{font-size:clamp(34px,7vw,60px);margin:0 0 5px}.age{color:#d8b56a;font-size:16px}.bio{color:#aaa;font-size:17px;line-height:1.9;margin:22px 0}.wa{display:flex;justify-content:center;padding:15px 22px;border-radius:40px;background:#d8b56a;color:#080808;font-weight:900}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.gallery img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}
-.back{display:inline-block;margin-top:35px;color:#d8b56a}
-@media(max-width:700px){.hero{grid-template-columns:1fr}.gallery{grid-template-columns:repeat(2,1fr)}}
-</style></head><body>
-<div class="wrap">
-<header class="top"><a class="logo" href="index.html">ليالي إسطنبول <span class="gold">ISTANBUL NIGHTS</span></a>
-<div class="lang"><button id="ar" class="active" onclick="setLang('ar')">AR</button><button id="en" onclick="setLang('en')">EN</button></div></header>
-<main id="profile">جاري تحميل البروفايل...</main>
-<a class="back" href="index.html#profiles">← العودة إلى البروفايلات</a>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:#050505;
+  color:#fff;
+  font-family:Arial,Tahoma,sans-serif;
+  min-height:100vh;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.header{
+  height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  border-bottom:1px solid rgba(212,175,55,.25);
+  background:#080808;
+}
+
+.logo{
+  color:#d4af37;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.back{
+  color:#d4af37;
+  border:1px solid rgba(212,175,55,.45);
+  padding:9px 15px;
+  border-radius:25px;
+  font-size:14px;
+}
+
+.container{
+  width:min(100%,900px);
+  margin:auto;
+  padding:25px 16px 60px;
+}
+
+.loading,
+.error{
+  text-align:center;
+  padding:60px 20px;
+  color:#d4af37;
+}
+
+/* الصورة الرئيسية */
+.main-photo{
+  position:relative;
+  width:100%;
+  max-height:650px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#111;
+  cursor:pointer;
+  box-shadow:0 15px 50px rgba(0,0,0,.5);
+}
+
+.main-photo img{
+  display:block;
+  width:100%;
+  max-height:650px;
+  object-fit:cover;
+}
+
+/* معلومات البروفايل */
+.info{
+  padding:24px 5px;
+}
+
+.name{
+  font-size:30px;
+  color:#d4af37;
+  margin-bottom:8px;
+}
+
+.age{
+  color:#ddd;
+  font-size:17px;
+  margin-bottom:18px;
+}
+
+.bio{
+  color:#ccc;
+  line-height:1.9;
+  font-size:16px;
+  white-space:pre-line;
+}
+
+.whatsapp{
+  display:inline-block;
+  margin-top:22px;
+  background:#d4af37;
+  color:#080808;
+  padding:13px 25px;
+  border-radius:30px;
+  font-weight:bold;
+}
+
+/* الصور المصغرة */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.thumb{
+  aspect-ratio:1/1;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+  border:2px solid transparent;
+  background:#111;
+}
+
+.thumb.active{
+  border-color:#d4af37;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* نافذة تكبير الصورة */
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.94);
+  z-index:9999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.lightbox.open{
+  display:flex;
+}
+
+.lightbox img{
+  max-width:95vw;
+  max-height:88vh;
+  object-fit:contain;
+  border-radius:10px;
+}
+
+.close{
+  position:absolute;
+  top:18px;
+  right:20px;
+  width:45px;
+  height:45px;
+  border:1px solid #d4af37;
+  border-radius:50%;
+  background:#111;
+  color:#d4af37;
+  font-size:27px;
+  cursor:pointer;
+}
+
+.nav{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid #d4af37;
+  background:rgba(0,0,0,.7);
+  color:#d4af37;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.prev{
+  left:18px;
+}
+
+.next{
+  right:18px;
+}
+
+.counter{
+  position:absolute;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#d4af37;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+  .header{
+    height:65px;
+  }
+
+  .name{
+    font-size:25px;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .nav{
+    width:42px;
+    height:42px;
+  }
+
+  .prev{
+    left:8px;
+  }
+
+  .next{
+    right:8px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">ليالي إسطنبول</div>
+  <a class="back" href="index.html">← العودة</a>
+</header>
+
+<main class="container">
+
+  <div id="loading" class="loading">
+    جاري تحميل الملف...
+  </div>
+
+  <div id="profile" style="display:none;">
+
+    <div class="main-photo" onclick="openLightbox(0)">
+      <img id="mainImage" src="" alt="">
+    </div>
+
+    <div id="gallery" class="gallery"></div>
+
+    <section class="info">
+      <h1 id="name" class="name"></h1>
+      <div id="age" class="age"></div>
+      <div id="bio" class="bio"></div>
+      <a id="whatsapp" class="whatsapp" href="#" target="_blank">
+        تواصل عبر واتساب
+      </a>
+    </section>
+
+  </div>
+
+  <div id="error" class="error" style="display:none;">
+    تعذر تحميل الملف الشخصي.
+  </div>
+
+</main>
+
+<!-- نافذة الصور -->
+<div id="lightbox" class="lightbox">
+
+  <button class="close" onclick="closeLightbox()">×</button>
+
+  <button class="nav prev" onclick="previousImage()">‹</button>
+
+  <img id="lightboxImage" src="" alt="">
+
+  <button class="nav next" onclick="nextImage()">›</button>
+
+  <div id="counter" class="counter"></div>
+
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-const SUPABASE_URL="https://edeczxsfhijkdglyrwqk.supabase.co",SUPABASE_ANON_KEY="sb_publishable_2RrItkJ4-M2JysNR8gOZZQ_Mo4GvpqC";
-const fallback={selin:{id:"selin",name_ar:"Selin",name_en:"Selin",age:25,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=85&w=1000"},
-aylin:{id:"aylin",name_ar:"Aylin",name_en:"Aylin",age:27,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=85&w=1000"},
-elif:{id:"elif",name_ar:"Elif",name_en:"Elif",age:24,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&q=85&w=1000"},
-deniz:{id:"deniz",name_ar:"Deniz",name_en:"Deniz",age:28,bio_ar:"إسطنبول • أجواء ليلية",bio_en:"Istanbul • Nightlife",image_url:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=85&w=1000"}};
-let lang=localStorage.getItem("istanbulNightsLanguage")==="en"?"en":"ar";
-function setLang(l){lang=l;document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";document.getElementById("ar").classList.toggle("active",l==="ar");document.getElementById("en").classList.toggle("active",l==="en");render(window.__profile);}
-function msg(p){let n=lang==="en"?(p.name_en||p.name_ar):(p.name_ar||p.name_en);return lang==="en"?`Hello, I would like to contact ${n}. I found the profile on Istanbul Nights and would like more information.`:`مرحباً، أرغب في التواصل مع العضوة ${n}. وجدت بروفايلها على موقع ليالي إسطنبول وأرغب في معرفة المزيد.`}
-function render(p){if(!p)return;window.__profile=p;let n=lang==="en"?(p.name_en||p.name_ar):(p.name_ar||p.name_en),b=lang==="en"?(p.bio_en||p.bio_ar):(p.bio_ar||p.bio_en);let phone=(p.whatsapp||"").replace(/\D/g,"");document.getElementById("profile").innerHTML=`<div class="hero"><div><img class="main-img" src="${p.image_url}" alt="${n}"></div><div><h1>${n}</h1><div class="age">${p.age||""}</div><p class="bio">${b||""}</p><a class="wa" href="${phone?`https://wa.me/${phone}?text=${encodeURIComponent(msg(p))}`:"#"}">${lang==="en"?"Contact via WhatsApp":"تواصل عبر واتساب"}</a><div class="gallery">${(p.gallery||[]).map(x=>`<img src="${x}" alt="${n}" loading="lazy">`).join("")}</div></div></div>`}
-async function load(){let slug=new URLSearchParams(location.search).get("slug")||"selin";let p=fallback[slug]||fallback.selin;if(SUPABASE_URL&&SUPABASE_ANON_KEY){let s=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);let {data}=await s.from("profiles").select("*").eq("slug",slug).eq("active",true).single();if(data)p=data;}render(p)}
-load();
-</script></body></html>
+
+const SUPABASE_URL =
+"https://edeczxsfhijkdglyrwqk.supabase.co";
+
+/*
+  ضع هنا Publishable Key الخاص بمشروعك
+  الذي حفظته سابقًا.
+*/
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_2RrItkJ4-M2JysNR8gOZZQ_Mo4GvpqC";
+
+let images = [];
+let currentIndex = 0;
+
+
+/* استخراج slug من الرابط */
+const params = new URLSearchParams(window.location.search);
+const slug = params.get("slug");
+
+
+async function loadProfile(){
+
+  if(!slug){
+    showError();
+    return;
+  }
+
+  try{
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/rest/v1/profiles?select=*&slug=eq." +
+      encodeURIComponent(slug) +
+      "&active=eq.true&limit=1",
+      {
+        headers:{
+          "apikey":SUPABASE_PUBLISHABLE_KEY,
+          "Authorization":"Bearer " + SUPABASE_PUBLISHABLE_KEY
+        }
+      }
+    );
+
+    if(!response.ok){
+      throw new Error("Profile request failed");
+    }
+
+    const data = await response.json();
+
+    if(!data.length){
+      showError();
+      return;
+    }
+
+    renderProfile(data[0]);
+
+  }catch(error){
+
+    console.error(error);
+    showError();
+
+  }
+
+}
+
+
+function renderProfile(profile){
+
+  document.getElementById("loading").style.display="none";
+  document.getElementById("profile").style.display="block";
+
+  document.getElementById("name").textContent =
+    profile.name_ar || profile.name_en || "";
+
+  if(profile.age){
+    document.getElementById("age").textContent =
+      profile.age + " سنة";
+  }
+
+  document.getElementById("bio").textContent =
+    profile.bio_ar || profile.bio_en || "";
+
+  /* تجهيز الصور */
+
+  images = [];
+
+  if(profile.image_url){
+    images.push(profile.image_url);
+  }
+
+  if(profile.gallery){
+
+    let gallery = profile.gallery;
+
+    if(typeof gallery === "string"){
+      try{
+        gallery = JSON.parse(gallery);
+      }catch(e){
+        gallery = [];
+      }
+    }
+
+    if(Array.isArray(gallery)){
+
+      gallery.forEach(url => {
+
+        if(
+          url &&
+          typeof url === "string" &&
+          !images.includes(url)
+        ){
+          images.push(url);
+        }
+
+      });
+
+    }
+
+  }
+
+  if(images.length){
+
+    document.getElementById("mainImage").src = images[0];
+
+    renderGallery();
+
+  }else{
+
+    document.getElementById("mainImage").style.display="none";
+
+  }
+
+
+  /* واتساب */
+
+  if(profile.whatsapp){
+
+    let phone = String(profile.whatsapp)
+      .replace(/\D/g,"");
+
+    const message =
+      "مرحباً، أريد التواصل بخصوص " +
+      (profile.name_ar || profile.name_en || "البروفايل");
+
+    document.getElementById("whatsapp").href =
+      "https://wa.me/" +
+      phone +
+      "?text=" +
+      encodeURIComponent(message);
+
+  }else{
+
+    document.getElementById("whatsapp").style.display="none";
+
+  }
+
+}
+
+
+function renderGallery(){
+
+  const gallery =
+    document.getElementById("gallery");
+
+  gallery.innerHTML="";
+
+  images.forEach((url,index)=>{
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "thumb" +
+      (index === 0 ? " active" : "");
+
+    div.onclick = () => {
+
+      setMainImage(index);
+
+    };
+
+    const img =
+      document.createElement("img");
+
+    img.src = url;
+    img.alt = "صورة " + (index + 1);
+
+    div.appendChild(img);
+    gallery.appendChild(div);
+
+  });
+
+}
+
+
+function setMainImage(index){
+
+  if(!images[index]) return;
+
+  currentIndex = index;
+
+  document.getElementById("mainImage").src =
+    images[index];
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach((thumb,i)=>{
+
+      thumb.classList.toggle(
+        "active",
+        i === index
+      );
+
+    });
+
+}
+
+
+function openLightbox(index){
+
+  if(!images.length) return;
+
+  currentIndex = index;
+
+  document.getElementById("lightboxImage").src =
+    images[currentIndex];
+
+  updateCounter();
+
+  document
+    .getElementById("lightbox")
+    .classList.add("open");
+
+  document.body.style.overflow="hidden";
+
+}
+
+
+function closeLightbox(){
+
+  document
+    .getElementById("lightbox")
+    .classList.remove("open");
+
+  document.body.style.overflow="";
+
+}
+
+
+function nextImage(){
+
+  if(!images.length) return;
+
+  currentIndex =
+    (currentIndex + 1) % images.length;
+
+  document.getElementById("lightboxImage").src =
+    images[currentIndex];
+
+  updateCounter();
+
+  setMainImage(currentIndex);
+
+}
+
+
+function previousImage(){
+
+  if(!images.length) return;
+
+  currentIndex =
+    (currentIndex - 1 + images.length) %
+    images.length;
+
+  document.getElementById("lightboxImage").src =
+    images[currentIndex];
+
+  updateCounter();
+
+  setMainImage(currentIndex);
+
+}
+
+
+function updateCounter(){
+
+  document.getElementById("counter").textContent =
+    (currentIndex + 1) +
+    " / " +
+    images.length;
+
+}
+
+
+function showError(){
+
+  document.getElementById("loading").style.display="none";
+
+  document.getElementById("error").style.display="block";
+
+}
+
+
+/* إغلاق عند الضغط خارج الصورة */
+document
+  .getElementById("lightbox")
+  .addEventListener("click",function(e){
+
+    if(e.target === this){
+      closeLightbox();
+    }
+
+  });
+
+
+/* الأسهم من لوحة المفاتيح */
+document.addEventListener("keydown",function(e){
+
+  if(e.key === "Escape"){
+    closeLightbox();
+  }
+
+  if(e.key === "ArrowRight"){
+    nextImage();
+  }
+
+  if(e.key === "ArrowLeft"){
+    previousImage();
+  }
+
+});
+
+
+loadProfile();
+
+</script>
+
+</body>
+</html>
