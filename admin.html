@@ -22,7 +22,7 @@
 </div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL="https://edeczxsfhijkdglyrwqk.supabase.co",SUPABASE_ANON_KEY="PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE"; let sb=null,currentId=null;
+const SUPABASE_URL="https://edeczxsfhijkdglyrwqk.supabase.co",SUPABASE_ANON_KEY="sb_publishable_2RrItkJ4-M2JysNR8gOZZQ_Mo4GvpqC"; let sb=null,currentId=null;
 function init(){if(!SUPABASE_URL||!SUPABASE_ANON_KEY){document.getElementById("authMsg").textContent="أولاً ضع بيانات Supabase العامة في أعلى هذا الملف.";return}sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);}
 async function login(){if(!sb)init();if(!sb)return;let {error}=await sb.auth.signInWithPassword({email:email.value,password:password.value});authMsg.textContent=error?error.message:"تم الدخول";if(!error)showApp();}
 async function showApp(){auth.style.display="none";app.style.display="block";loadList();}
