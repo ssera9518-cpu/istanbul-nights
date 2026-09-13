@@ -12,6 +12,8 @@
 <meta property="og:description" content="عِش سهرات لا تُنسى في إسطنبول">
 <meta property="og:type" content="website">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400&display=swap');
+
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#070707;color:#fff;line-height:1.7;overflow-x:hidden}body.modal-open{overflow:hidden}
 a{color:inherit;text-decoration:none}button{font-family:inherit}
@@ -50,6 +52,113 @@ footer{background:#050505;padding:45px 20px 30px;text-align:center;border-top:1p
 @media(max-width:700px){.modal-profile{grid-template-columns:1fr;gap:22px;padding-top:15px}.modal-name{font-size:42px}.modal-bio{font-size:16px}}
 @media(max-width:420px){.profile-actions{grid-template-columns:1fr}}
 html[dir=ltr] .logo{text-align:left}
+</style>
+<style>
+/* ISTANBUL NIGHTS — FINAL VISUAL DIRECTION
+   Reference: thin elegant typography, cinematic dark Istanbul, restrained gold.
+   Existing profile cards, modal and functionality remain untouched.
+*/
+:root{
+  --gold:#d8b56a;
+  --gold-light:#f0d38b;
+  --black:#050505;
+}
+body{
+  font-family:'Tajawal',-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-weight:300;
+}
+header{padding:24px 22px}
+.logo-ar{
+  font-size:27px!important;
+  font-weight:300!important;
+  letter-spacing:.3px;
+}
+.logo-en{
+  font-size:11px!important;
+  font-weight:300!important;
+  letter-spacing:5px!important;
+  margin-top:7px!important;
+}
+.menu-button{
+  width:52px!important;height:52px!important;
+  border-color:rgba(255,255,255,.28)!important;
+  background:rgba(0,0,0,.28)!important;
+  font-size:24px!important;
+}
+.language-switch{
+  border-color:rgba(216,181,106,.75)!important;
+  background:rgba(0,0,0,.32)!important;
+}
+.language-switch button{
+  padding:10px 14px!important;
+  font-size:12px!important;
+  font-weight:400!important;
+}
+.hero{
+  min-height:100svh;
+  padding:150px 22px 90px!important;
+  background-image:
+    linear-gradient(to bottom,rgba(0,0,0,.18),rgba(0,0,0,.20) 42%,rgba(0,0,0,.72) 100%),
+    url("https://images.unsplash.com/photo-1767793357520-d6bc51743951?auto=format&fit=crop&q=90&w=2400")!important;
+  background-position:center center!important;
+}
+.hero-content{max-width:900px!important}
+.hero-small{
+  color:var(--gold-light)!important;
+  font-size:12px!important;
+  font-weight:300!important;
+  letter-spacing:6px!important;
+  margin-bottom:24px!important;
+}
+.hero h1{
+  font-size:clamp(42px,11vw,82px)!important;
+  line-height:1.28!important;
+  font-weight:300!important;
+  letter-spacing:0!important;
+  text-shadow:0 3px 25px rgba(0,0,0,.75)!important;
+  margin-bottom:22px!important;
+}
+.hero h1 span{color:var(--gold-light)!important}
+.hero-subtitle{
+  color:#eee!important;
+  font-size:clamp(16px,4.3vw,21px)!important;
+  font-weight:300!important;
+  margin-bottom:34px!important;
+  text-shadow:0 2px 15px rgba(0,0,0,.75)!important;
+}
+.hero-buttons{
+  max-width:390px!important;
+  gap:14px!important;
+}
+.btn{
+  min-height:58px!important;
+  border-radius:36px!important;
+  font-size:16px!important;
+  font-weight:300!important;
+  letter-spacing:.1px;
+}
+.btn-gold{
+  color:#15110a!important;
+  background:linear-gradient(135deg,#f1d48c,#d8b56a)!important;
+  box-shadow:0 12px 32px rgba(0,0,0,.35)!important;
+}
+.btn-outline{
+  color:#fff!important;
+  border:1px solid rgba(216,181,106,.8)!important;
+  background:rgba(0,0,0,.24)!important;
+  backdrop-filter:blur(9px)!important;
+}
+.scroll-down{
+  bottom:28px!important;
+  color:var(--gold-light)!important;
+  font-weight:300!important;
+}
+@media(max-width:600px){
+  header{padding:20px 18px}
+  .logo-ar{font-size:25px!important}
+  .hero{padding-top:145px!important}
+  .hero h1{font-size:clamp(40px,11.2vw,62px)!important}
+}
 </style>
 </head>
 <body>
