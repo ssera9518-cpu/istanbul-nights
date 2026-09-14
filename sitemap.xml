@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://YOUR-DOMAIN.example/</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/profile.html?slug=selin</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/profile.html?slug=aylin</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/profile.html?slug=elif</loc></url>
-  <url><loc>https://YOUR-DOMAIN.example/profile.html?slug=deniz</loc></url>
+  <url>
+    <loc>https://istanbulnights.love/</loc>
+  </url>
+  <url>
+    <loc>https://istanbulnights.love/profile.html?slug=selin</loc>
+  </url>
+  <url>
+    <loc>https://istanbulnights.love/profile.html?slug=aylin</loc>
+  </url>
+  <url>
+    <loc>https://istanbulnights.love/profile.html?slug=elif</loc>
+  </url>
+  <url>
+    <loc>https://istanbulnights.love/profile.html?slug=deniz</loc>
+  </url>
 </urlset>
